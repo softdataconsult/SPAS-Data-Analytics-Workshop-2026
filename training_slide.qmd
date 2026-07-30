@@ -1,0 +1,286 @@
+---
+title: "Data Analytics for Scientific Research & Innovation"
+subtitle: "Bridging Foundational Concepts to Hands-on Analysis"
+author: "Dr. Isaac Oluwaseyi Ajao"
+institute: "School of Pure and Applied Sciences (SPAS), Federal Polytechnic, Ado-Ekiti"
+date: "August 10-13, 2026"
+format:
+  revealjs:
+    theme: dark
+    slide-number: true
+    chalkboard: true
+    preview-links: auto
+    logo: "fpa_logo.png"
+    footer: ""
+    transition: slide
+    highlight-style: monokai
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Workshop Schedule (1 hr 45 mins)
+
+| Time | Session Focus | Key Deliverables |
+|:---|:---|:---|
+| **00:00 - 00:35** | **Part I: Conceptual Foundations** | Data types, hypothesis testing, test decision trees |
+| **00:35 - 01:25** | **Part II: Hands-on R Workflow** | Data import, cleaning, summary statistics, visualization |
+| **01:25 - 01:45** | **Part III: Statistical Modeling & Interpretation** | Hypothesis testing, ANOVA/Regression, Q&A |
+
+---
+
+# Part I: Conceptual Foundations
+
+---
+
+## Why Data Analytics in Pure & Applied Sciences?
+
+Data analysis transforms raw laboratory measurements, survey responses, and experimental observations into **actionable scientific insight**.
+
+::: {.columns}
+
+::: {.column width="50%"}
+### Common Challenges
+* Small sample sizes ($n < 30$)
+* Non-normal laboratory readings
+* Distinguishing signal from experimental noise
+* Selecting the wrong test for nominal vs. continuous metrics
+:::
+
+::: {.column width="50%"}
+### Strategic Goal
+To equip researchers across **Microbiology, Chemistry, Physics, Hospitality, and Food Science** with standard, reproducible statistical techniques.
+:::
+
+:::
+
+---
+
+## Understanding Data Types
+
+Before choosing a statistical test, you **must** identify your measurement scale:
+
+
+```
+
+```
+                        Data Types
+                            │
+     ┌──────────────────────┴──────────────────────┐
+Quantitative                                  Qualitative
+
+```
+
+(Numeric / Continuous)                      (Categorical / Discrete)
+│                                             │
+┌────┴──────────────┐                     ┌────────┴────────────┐
+Continuous          Discrete              Nominal               Ordinal
+(pH, Yield, Temp)   (Cell counts)       (Sample Types)       (Likert scale)
+
+```
+
+> **Rule of Thumb:** Your data type directly dictates whether you apply parametric tests (e.g., $t$-test, ANOVA) or non-parametric tests (e.g., Mann-Whitney, Kruskal-Wallis).
+
+---
+
+## Formulating Scientific Hypotheses
+
+Every statistical test starts with two competing hypotheses:
+
+### 1. Null Hypothesis ($H_0$)
+* Statement of **no difference**, **no effect**, or **no association**.
+* *Example (Food Tech):* $H_0$: Shelf-life duration does not differ across three storage packaging materials.
+
+### 2. Alternative Hypothesis ($H_1$ or $H_a$)
+* Statement of **an effect**, **a difference**, or **a relationship**.
+* *Example (Food Tech):* $H_1$: At least one packaging material yields a significantly different shelf-life duration.
+
+---
+
+## Statistical Test Selection Matrix
+
+| Research Question | Input (X) | Output (Y) | Parametric Test | Non-Parametric Equivalent |
+|:---|:---|:---|:---|:---|
+| Compare 2 independent groups | Categorical (2 levels) | Continuous (Normal) | **Independent $t$-test** | Mann-Whitney U test |
+| Compare 2 paired measurements | Categorical (Paired) | Continuous (Normal) | **Paired $t$-test** | Wilcoxon signed-rank |
+| Compare 3+ groups | Categorical (3+ levels)| Continuous (Normal) | **One-Way ANOVA** | Kruskal-Wallis test |
+| Assess linear relationship | Continuous | Continuous | **Pearson Correlation** | Spearman Correlation |
+| Predict continuous response | Continuous/Categorical | Continuous | **Linear Regression** | Generalized Linear Models |
+
+---
+
+## Interpreting the $p$-value and $R^2$
+
+### The $p$-value
+* Measures the probability of observing your data under $H_0$.
+* Standard Threshold ($\alpha = 0.05$):
+  * **$p < 0.05$**: Reject $H_0 \rightarrow$ Statistically significant effect.
+  * **$p \ge 0.05$**: Fail to reject $H_0 \rightarrow$ Insufficient evidence.
+
+### Coefficient of Determination ($R^2$)
+* Quantifies the proportion of variance in $Y$ explained by model $X$.
+* *Example:* $R^2 = 0.84 \implies$ 84% of product viscosity change is explained by temperature variation.
+
+---
+
+# Part II: Hands-on Analysis in R
+
+---
+
+## Environment Setup & Package Loading
+
+```r
+# Load required libraries for the session
+library(tidyverse)  # Data manipulation and ggplot2 visualization
+library(ggpubr)     # Publication-ready plots and statistical annotations
+library(rstatix)    # Pipe-friendly statistical testing framework
+
+# Set global ggplot theme
+theme_set(theme_minimal(base_size = 14))
+
+```
+
+---
+
+## Generating Multidisciplinary Sample Data
+
+```r
+# Simulate experimental research data across SPAS disciplines
+set.seed(2026)
+
+research_data <- tibble(
+  Sample_ID = 1:60,
+  Department = rep(c("Food_Science", "Applied_Chem", "Microbiology"), each = 20),
+  Treatment_Temp = rep(c(25, 45, 65, 85), times = 15),
+  Enzyme_Activity = round(c(
+    rnorm(20, mean = 45, sd = 5),
+    rnorm(20, mean = 62, sd = 6),
+    rnorm(20, mean = 55, sd = 4)
+  ), 2)
+)
+
+head(research_data, 5)
+
+```
+
+---
+
+## Summary Statistics by Department
+
+```r
+# Calculate summary metrics (Mean, SD, Median, IQR)
+summary_table <- research_data %>%
+  group_by(Department) %>%
+  get_summary_stats(Enzyme_Activity, type = "common")
+
+summary_table
+
+```
+
+---
+
+## Exploratory Data Visualization
+
+```r
+# Visualizing distributions across departments
+ggplot(research_data, aes(x = Department, y = Enzyme_Activity, fill = Department)) +
+  geom_boxplot(alpha = 0.7, outlier.colour = "red") +
+  geom_jitter(width = 0.1, alpha = 0.5) +
+  labs(
+    title = "Enzyme Activity Distribution Across SPAS Departments",
+    x = "Department Group",
+    y = "Enzyme Activity (U/mL)"
+  ) +
+  theme(legend.position = "none")
+
+```
+
+---
+
+# Part III: Inferential Statistics & Modeling
+
+---
+
+## Evaluating Group Differences (One-Way ANOVA)
+
+### Research Question
+
+Does mean **Enzyme Activity** differ significantly across the three departments?
+
+```r
+# Compute One-Way ANOVA
+anova_res <- research_data %>%
+  anova_test(Enzyme_Activity ~ Department)
+
+anova_res
+
+```
+
+---
+
+## Post-Hoc Pairwise Comparisons
+
+If ANOVA indicates significant differences ($p < 0.05$), execute Tukey HSD post-hoc testing:
+
+```r
+# Pairwise comparisons with p-value adjustment
+post_hoc <- research_data %>%
+  tukey_hsd(Enzyme_Activity ~ Department)
+
+post_hoc %>%
+  select(group1, group2, p.adj, p.adj.signif)
+
+```
+
+---
+
+## Regression Analysis: Predicting Yield
+
+```r
+# Fitting a linear regression model
+fit_model <- lm(Enzyme_Activity ~ Treatment_Temp, data = research_data)
+
+# Display model summary
+summary(fit_model)
+
+```
+
+---
+
+## Visualizing Regression Trends
+
+```r
+ggplot(research_data, aes(x = Treatment_Temp, y = Enzyme_Activity)) +
+  geom_point(color = "#2b5c8f", size = 3) +
+  geom_smooth(method = "lm", color = "#d9534f", se = TRUE) +
+  stat_regline_equation(label.x = 30, label.y = 75) +
+  stat_cor(label.x = 30, label.y = 70) +
+  labs(
+    title = "Effect of Temperature on Enzyme Activity",
+    x = "Temperature (°C)",
+    y = "Enzyme Activity (U/mL)"
+  )
+
+```
+
+---
+
+## Practical Takeaways for Researchers
+
+1. **Know Your Data:** Categorical vs. Continuous determines your analytical pathway.
+2. **Check Assumptions:** Always verify normality and homogeneity of variance before parametric tests.
+3. **Focus on Interpretation:** Report effect size and confidence intervals alongside $p$-values.
+4. **Reproducibility:** Use Quarto documents (`.qmd`) to bundle code, outputs, and scientific write-ups together.
+
+---
+
+## Thank You!
+
+### Questions & Discussion
+
+**Facilitator:** Dr. Isaac Oluwaseyi Ajao
+
+*School of Pure and Applied Sciences (SPAS)*
+
+*Federal Polytechnic, Ado-Ekiti*

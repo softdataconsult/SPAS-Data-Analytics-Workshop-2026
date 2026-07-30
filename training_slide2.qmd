@@ -1,0 +1,292 @@
+---
+title: "Data Analytics for Scientific Research & Innovation"
+subtitle: "A Practical Guide Using SPSS (With R & Python Insights)"
+author: "Dr. Isaac O. Ajao"
+institute: "School of Pure and Applied Sciences (SPAS), Federal Polytechnic, Ado-Ekiti"
+date: "2026-08-10"
+date-format: "[August 10–13, 2026]"
+format:
+  beamer:
+    theme: Warsaw
+    colortheme: whale # <--- Standard Beamer Blue Theme
+    fonttheme: structurebold
+    navigation: horizontal
+    section-titles: true
+  
+header-includes:
+  - \useinnertheme{circles}
+  - \setbeamertemplate{footline}[frame number]
+  - \logo{\includegraphics[height=1.1cm]{fpa_logo.PNG}}  
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+## Workshop Schedule
+
+\begin{table}
+\centering
+\small
+\begin{tabular}{|l|p{3.8cm}|p{4.2cm}|}
+\hline
+\textbf{Time} & \textbf{Session Focus} & \textbf{Key Deliverables} \\ \hline
+00:00 - 00:40 & Part I: Conceptual Foundations & 8 Core pre-analysis pillars \\ \hline
+00:40 - 01:25 & Part II: Hands-on SPSS Workflow & Import, Descriptives, ANOVA, Regression \\ \hline
+01:25 - 01:45 & Part III: Modern Tools (R \& Python) & Open-source ecosystem, code comparison, Q\&A \\ \hline
+\end{tabular}
+\end{table}
+
+# Part I: Foundations Before Analysis
+
+## 1. Why Researchers Need Data Analytics
+
+Data analytics bridges the gap between raw experimental trials and publishable scientific discovery.
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\textbf{Core Scientific Benefits:}
+\begin{itemize}
+  \item Evidence-based decision making
+  \item Distinguishing true signal from noise
+  \item Validating experimental reproducibility
+  \item Meeting peer-reviewed journal standards
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\textbf{SPAS Context:}
+Whether quantifying cell growth (Microbiology), compound yield (Chemistry), or sensory scores (Food Science), data analytics turns numbers into evidence.
+\end{column}
+\end{columns}
+
+## 2. Understanding Scientific Data
+
+Scientific data is rarely clean out of the instrument or notebook.
+
+\begin{block}{Characteristics of Experimental Data}
+\begin{itemize}
+  \item \textbf{Structure:} Wide format (variables as columns) vs. Long format.
+  \item \textbf{Quality:} Presence of missing values, human entry errors, or machine drift.
+  \item \textbf{Sample Size ($n$):} Lab trials often deal with small samples ($n < 30$), requiring careful distributional checks.
+\end{itemize}
+\end{block}
+
+\alert{Golden Rule:} Clean and structure your data before attempting any statistical software analysis.
+
+## 3. Variables and Measurement Scales
+
+Your measurement scale strictly dictates which statistical test is mathematically valid.
+
+\begin{block}{The 4 Measurement Scales}
+\begin{itemize}
+  \item \textbf{Nominal (Categorical):} Unordered groups (e.g., Strain type, Department, Packaging material).
+  \item \textbf{Ordinal (Categorical):} Ordered ranks (e.g., Likert scale, Quality grade 1–5).
+  \item \textbf{Interval (Continuous):} Numeric without a true zero (e.g., Temperature in $^\circ$C).
+  \item \textbf{Ratio (Continuous):} Numeric with a absolute zero (e.g., Weight, Yield, Concentration, Absorbance).
+\end{itemize}
+\end{block}
+
+In SPSS, Interval and Ratio are combined into **Scale**.
+
+## 4. Research Questions and Hypotheses
+
+Every analysis answers a specific question tested through competing hypotheses:
+
+### 1. Null Hypothesis ($H_0$)
+* Statement of **no effect**, **no difference**, or **no correlation**.
+* *Example:* $H_0$: Enzyme activity does not differ across storage temperatures.
+
+### 2. Alternative Hypothesis ($H_1$ or $H_a$)
+* Statement of **an effect**, **a difference**, or **a relationship**.
+* *Example:* $H_1$: Enzyme activity differs significantly across storage temperatures.
+
+## 5. Descriptive Statistics
+
+Summarizing data characteristics before formal statistical testing.
+
+\begin{table}
+\centering
+\small
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Data Type} & \textbf{Central Tendency} & \textbf{Dispersion / Variability} \\ \hline
+Normal (Continuous) & Mean ($\bar{x}$) & Standard Deviation ($s$), Variance ($s^2$) \\ \hline
+Skewed / Ordinal & Median & Interquartile Range (IQR) \\ \hline
+Nominal & Mode & Frequency / Percentages (\%) \\ \hline
+\end{tabular}
+\end{table}
+
+\alert{Note:} Reporting the Mean with skewed data can lead to misleading conclusions. Always check symmetry first.
+
+## 6. Visualizing Scientific Data
+
+Selecting the right chart for your variable type:
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\textbf{Categorical Data:}
+\begin{itemize}
+  \item \textbf{Bar Chart:} Comparing counts or percentages across groups.
+  \item \textbf{Pie Chart:} Proportions of a whole (best for $\le 5$ groups).
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\textbf{Continuous Data:}
+\begin{itemize}
+  \item \textbf{Histogram / Density Plot:} Checking distribution shape (normality).
+  \item \textbf{Boxplot:} Detecting outliers and checking skewness.
+  \item \textbf{Scatter Plot:} Inspecting relationships between two variables ($X$ vs $Y$).
+\end{itemize}
+\end{column}
+\end{columns}
+
+## 7. Inferential Statistics & $p$-values
+
+Inferential statistics allows us to draw conclusions about a **population** based on our **sample**.
+
+### The $p$-value (Sig. in SPSS)
+* Measures the probability of observing our sample results if $H_0$ were true.
+* **Significance Level ($\alpha = 0.05$):**
+  * **$p < 0.05$**: Reject $H_0 \rightarrow$ Statistically significant result.
+  * **$p \ge 0.05$**: Fail to reject $H_0 \rightarrow$ Insufficient evidence.
+
+### Effect Size ($R^2$, $\eta^2$)
+* $p$-value tells you *if* there is an effect; effect size tells you *how large* or *practically meaningful* the effect is.
+
+## 8. Selecting Statistical Tests (Decision Matrix)
+
+\begin{table}[h]
+\centering
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Goal} & \textbf{Input (X)} & \textbf{Output (Y)} & \textbf{Parametric} & \textbf{Non-Parametric} \\ \hline
+Compare 2 groups & Nominal (2) & Scale (Normal) & Indep. $t$-test & Mann-Whitney U \\ \hline
+Compare paired & Nominal (Paired) & Scale (Normal) & Paired $t$-test & Wilcoxon signed \\ \hline
+Compare 3+ groups & Nominal (3+) & Scale (Normal) & One-Way ANOVA & Kruskal-Wallis \\ \hline
+Relationship & Scale & Scale & Pearson $r$ & Spearman $\rho$ \\ \hline
+Prediction & Scale/Nominal & Scale & Linear Regression & Logistic (Categorical Y) \\ \hline
+\end{tabular}%
+}
+\end{table}
+# Part II: Hands-on Workflow in SPSS
+
+## Step 1: Setting Up Variable View & Data Import
+
+In SPSS, start by defining properties correctly in **Variable View**:
+
+1. **Name:** Short, clear variable names (`Dept`, `Temp`, `Activity`).
+2. **Type:** *Numeric* for measurement readings.
+3. **Values:** Label codes for categorical groups (e.g., `1 = Microbiology`, `2 = Chemistry`, `3 = Food Science`).
+4. **Measure:** Explicitly set as **Scale**, **Ordinal**, or **Nominal**.
+
+\begin{block}{Importing Excel Files}
+Go to `File > Open > Data > Files of type: Excel (*.xls, *.xlsx)`. Check "Read variable names from first row".
+\end{block}
+
+## Step 2: Descriptives & Normality Checks
+
+### Menu Path
+`Analyze > Descriptive Statistics > Explore...`
+
+* Move outcome metric to **Dependent List**.
+* Move grouping variable to **Factor List**.
+* Under **Plots...**, select **Normality plots with tests**.
+
+\begin{block}{Interpreting Shapiro-Wilk Test}
+\begin{itemize}
+  \item Sig. $> 0.05$: Data is Normal $\rightarrow$ Proceed with Parametric Tests (ANOVA / $t$-test).
+  \item Sig. $< 0.05$: Data is Non-Normal $\rightarrow$ Use Non-Parametric Tests (Kruskal-Wallis).
+\end{itemize}
+\end{block}
+
+## Step 3: Running One-Way ANOVA & Post-Hoc Tests
+
+### Menu Path
+`Analyze > Compare Means > One-Way ANOVA...`
+
+1. **Dependent List:** Continuous variable (e.g., `Enzyme_Activity`).
+2. **Factor:** Grouping variable (e.g., `Department`).
+3. **Post Hoc...:** Check **Tukey** (pinpoints *which* specific groups differ).
+4. **Options...:** Check **Descriptives** & **Homogeneity of variance test**.
+
+### Reading Outputs
+Check the **ANOVA** table **Sig.** column. If **Sig. $< 0.05$**, open the **Multiple Comparisons** table to read pairwise differences.
+
+## Step 4: Regression & Trend Prediction
+
+### Menu Path
+`Analyze > Regression > Linear...`
+
+1. **Dependent:** Variable to predict ($Y$).
+2. **Independent(s):** Predictor variable ($X$).
+
+### Output Tables to Include in Publications:
+* **Model Summary:** Check **$R$ Square** (e.g., $R^2 = 0.84 \implies$ 84\% variance explained).
+* **ANOVA:** Check overall model **Sig.**
+* **Coefficients:** Read **Unstandardized B** values to construct your predictive equation:
+  $$Y = \beta_0 + \beta_1(X)$$
+
+# Part III: Beyond SPSS — R & Python
+
+## Why Explore Open-Source Tools Later?
+
+SPSS provides immediate point-and-click results, but learning R or Python provides long-term advantages:
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\textbf{Key Advantages:}
+\begin{itemize}
+  \item \textbf{Cost}: 100\% free, no license expiration.
+  \item \textbf{Reproducibility}: Code scripts document every step.
+  \item \textbf{Custom Graphics}: Publication-quality figures via `ggplot2`.
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\textbf{Specializations:}
+\begin{itemize}
+  \item \textbf{R:} Purpose-built for advanced statistics and automated publishing (Quarto).
+  \item \textbf{Python:} Leading language for Machine Learning and AI models.
+\end{itemize}
+\end{column}
+\end{columns}
+
+## Conceptual Code Comparison: One-Way ANOVA
+
+### 1. SPSS
+`Analyze > Compare Means > One-Way ANOVA...` (Dialog box execution)
+
+### 2. R Language
+```r
+fit <- aov(Enzyme_Activity ~ Department, data = df)
+summary(fit)
+
+```
+
+### 3. Python
+
+```python
+import statsmodels.api as sm
+from statsmodels.formula.api import ols
+
+model = ols('Enzyme_Activity ~ C(Department)', data=df).fit()
+
+```
+
+## Summary & Best Practices
+
+1. **Prioritize Conceptual Clarity:** Understand measurement scales and hypotheses before clicking "Analyze".
+2. **Check Assumptions:** Always verify normality before trusting $p$-values.
+3. **Report Completely:** Include test statistics ($t$, $F$, $\chi^2$), $p$-values, and effect sizes ($R^2$).
+4. **Scale Up:** Master SPSS for immediate analysis, then transition to R or Python for advanced workflows.
+
+\vspace{0.8cm}
+\centering 
+Thank You! Questions & Hands-on SPSS Practice
+
+\small Dr. Isaac O. Ajao | Department of Statistics, Federal Polytechnic, Ado-Ekiti
+

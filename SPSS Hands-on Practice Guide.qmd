@@ -1,0 +1,78 @@
+---
+title: "SPSS Hands-on Practice Guide"
+format: docx
+editor: visual
+---
+
+*(You can import this `.csv` directly into SPSS via **`File > Open > Data > Files of type: CSV (*.csv)`**).*
+
+---
+
+### Dataset Structure & Variable Definitions
+
+| Variable Name | SPSS Measure | Data Type | Description & Purpose in Training |
+| --- | --- | --- | --- |
+| **`Sample_ID`** | Nominal | String | Unique sample identifier (`SMP_001` to `SMP_060`). |
+| **`Department`** | Nominal | Categorical | Grouping variable: *Microbiology*, *Applied Chemistry*, *Food Science*. |
+| **`Packaging_Type`** | Nominal | Categorical | Binary group: *Packaging_A* vs. *Packaging_B*. |
+| **`Temperature_C`** | Scale | Continuous | Independent treatment variable ($25^\circ\text{C}, 45^\circ\text{C}, 65^\circ\text{C}, 85^\circ\text{C}$). |
+| **`Storage_Days`** | Scale | Continuous | Number of days stored (1 to 30 days). |
+| **`Enzyme_Activity`** | Scale | Continuous | Enzyme metric (U/mL) — **Used for One-Way ANOVA**. |
+| **`Yield_Pct`** | Scale | Continuous | Product extraction yield (%) — **Used for Linear Regression**. |
+| **`Shelf_Life_Days`** | Scale | Continuous | Product shelf life — **Used for Independent $t$-Test**. |
+| **`Sensory_Score`** | Ordinal | Discrete (1–5) | Quality rating — **Used for Non-Parametric / Descriptive practice**. |
+
+---
+
+## SPSS Hands-on Practice Guide for Participants
+
+You can guide the participants through these 4 exact exercises during the session:
+
+### Exercise 1: Checking Data Normality (Shapiro-Wilk)
+
+* **Goal:** Verify if `Enzyme_Activity` follows a normal distribution.
+* **SPSS Menu:** `Analyze > Descriptive Statistics > Explore...`
+* **Settings:** Move `Enzyme_Activity` into **Dependent List** $\rightarrow$ Click **Plots...** $\rightarrow$ Check **Normality plots with tests**.
+* **Expected Result:** $p > 0.05$ (Shapiro-Wilk), confirming parametric tests are appropriate.
+
+---
+
+### Exercise 2: Comparing 2 Groups (Independent Samples $t$-Test)
+
+* **Research Question:** Does product shelf life differ significantly between *Packaging_A* and *Packaging_B*?
+* **SPSS Menu:** `Analyze > Compare Means > Independent-Samples T Test...`
+* **Settings:**
+* Test Variable: `Shelf_Life_Days`
+* Grouping Variable: `Packaging_Type` (Define Groups: `Packaging_A`, `Packaging_B`)
+
+
+* **Expected Result:** **Sig. (2-tailed) $< 0.001$**. *Packaging_B* yields significantly longer shelf life ($M \approx 22.5\text{ days}$) than *Packaging_A* ($M \approx 14.0\text{ days}$).
+
+---
+
+### Exercise 3: Comparing 3+ Groups (One-Way ANOVA & Tukey Post-Hoc)
+
+* **Research Question:** Does mean enzyme activity differ significantly across the three academic departments?
+* **SPSS Menu:** `Analyze > Compare Means > One-Way ANOVA...`
+* **Settings:**
+* Dependent List: `Enzyme_Activity`
+* Factor: `Department`
+* **Post Hoc...**: Check **Tukey**
+
+
+* **Expected Result:** **Sig. $< 0.001$**. Tukey post-hoc reveals Applied Chemistry yields significantly higher activity than Microbiology and Food Science.
+
+---
+
+### Exercise 4: Predicting Outcomes (Simple Linear Regression)
+
+* **Research Question:** Can reaction temperature predict the percentage yield of the chemical/food process?
+* **SPSS Menu:** `Analyze > Regression > Linear...`
+* **Settings:**
+* Dependent: `Yield_Pct`
+* Independent(s): `Temperature_C`
+
+
+* **Expected Result:**
+* **Model Summary:** $R^2 \approx 0.81$ (81% of yield variance explained by temperature).
+* **Coefficients Table:** Regression equation: $\text{Yield} = 20.0 + 0.65(\text{Temperature})$.
