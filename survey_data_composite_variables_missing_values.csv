@@ -1,0 +1,61 @@
+respondent_id,department,gender,research_experience_years,knowledge_1,knowledge_2,knowledge_3,knowledge_4,confidence_1,confidence_2,confidence_3,confidence_4,practice_1,practice_2,practice_3
+1,Food Science,Female,5,3,3,1,5,2,1,4,5,2,1,3
+2,Hospitality,Female,10,2,4,5,2,1,1,5,4,4,1,1
+3,Biochemistry,Female,7,4,4,4,2,2,2,1,3,4,3,3
+4,Hospitality,Female,9,1,3,3,3,1,3,3,2,5,5,4
+5,Hospitality,Female,7,1,4,1,2,5,4,4,2,1,5,4
+6,Microbiology,Female,9,1,,1,1,5,5,1,3,4,4,1
+7,Biochemistry,Male,8,1,2,4,5,1,5,4,3,3,1,3
+8,Biochemistry,Male,12,3,3,3,4,5,4,4,5,1,1,3
+9,Biochemistry,Female,2,1,3,3,2,5,2,,5,1,2,3
+10,Hospitality,Female,1,4,4,5,1,5,5,2,2,1,4,5
+11,Food Science,Female,16,5,4,3,4,3,3,5,4,5,2,2
+12,Biochemistry,Female,23,1,1,3,5,4,2,5,2,4,2,5
+13,Hospitality,Female,23,3,1,3,4,2,3,3,4,5,,2
+14,Microbiology,Female,24,3,2,2,1,3,1,4,4,4,3,3
+15,Food Science,Female,5,1,1,5,4,5,2,1,5,5,3,3
+16,Microbiology,Female,3,5,3,1,3,1,5,4,1,5,2,5
+17,Food Science,Male,12,1,4,4,4,5,2,3,1,3,4,5
+18,Hospitality,Female,8,3,1,1,2,4,2,5,3,5,1,2
+19,Chemistry,Male,22,2,,5,2,5,2,4,5,2,4,4
+20,Food Science,Female,3,4,2,4,3,1,2,5,4,3,5,2
+21,Microbiology,Female,1,3,2,5,1,4,3,1,1,5,3,5
+22,Hospitality,Male,3,1,3,3,2,5,1,5,4,1,1,5
+23,Food Science,Female,5,4,4,4,5,4,4,5,1,2,1,1
+24,Chemistry,Male,15,1,2,3,2,2,2,2,1,2,5,5
+25,Chemistry,Female,14,1,1,1,2,2,5,2,1,2,5,1
+26,Biochemistry,Female,3,2,4,1,1,5,2,2,5,3,2,4
+27,Biochemistry,Male,1,4,4,4,4,4,5,5,2,5,3,2
+28,Microbiology,Female,5,4,1,4,2,1,3,,4,5,3,2
+29,Food Science,Male,23,2,2,5,3,5,5,5,5,1,4,1
+30,Food Science,Female,14,3,1,5,4,2,4,3,5,1,2,2
+31,Biochemistry,Male,7,1,4,3,5,2,1,3,5,2,,5
+32,Food Science,Male,9,5,5,4,1,5,5,2,5,1,2,3
+33,Food Science,Female,15,1,5,1,5,4,5,4,5,3,2,1
+34,Chemistry,Female,15,1,,5,4,2,1,1,3,5,3,2
+35,Biochemistry,Male,10,3,1,5,4,4,4,2,4,2,3,1
+36,Hospitality,Female,13,1,1,1,4,2,2,2,5,1,2,1
+37,Biochemistry,Female,19,2,3,5,5,2,5,4,4,3,4,3
+38,Hospitality,Female,7,2,3,3,4,3,1,1,3,3,1,5
+39,Chemistry,Male,17,4,3,4,5,2,3,5,3,1,1,1
+40,Microbiology,Male,20,5,4,1,4,1,1,5,4,5,4,2
+41,Food Science,Male,4,1,1,4,3,5,3,2,1,1,2,4
+42,Chemistry,Male,5,1,4,5,4,5,4,1,2,2,3,1
+43,Food Science,Male,23,3,3,5,5,4,2,2,1,1,1,1
+44,Microbiology,Male,7,2,1,1,2,2,1,3,1,3,5,3
+45,Microbiology,Male,13,5,4,3,4,1,5,2,1,1,5,5
+46,Chemistry,Male,15,4,4,2,2,4,4,,5,5,4,4
+47,Microbiology,Male,11,2,3,1,3,3,1,5,3,4,2,2
+48,Hospitality,Female,4,4,1,2,1,4,5,5,1,1,1,4
+49,Microbiology,Male,13,3,3,2,3,4,1,5,3,5,2,2
+50,Food Science,Female,7,3,1,3,4,2,3,3,4,5,1,5
+51,Food Science,Female,19,1,5,2,2,3,1,5,2,3,4,2
+52,Food Science,Female,22,5,2,2,2,4,1,1,4,5,4,3
+53,Food Science,Male,2,4,2,3,5,1,1,4,4,5,5,3
+54,Hospitality,Male,10,2,2,2,2,1,4,1,5,5,2,3
+55,Biochemistry,Male,13,3,3,2,5,5,1,1,2,5,5,3
+56,Chemistry,Male,21,1,5,2,1,3,5,5,4,2,2,4
+57,Food Science,Female,6,1,1,1,4,3,3,4,4,2,5,5
+58,Microbiology,Male,12,4,4,1,5,5,3,4,2,3,3,2
+59,Food Science,Male,12,3,1,1,1,4,1,4,2,1,3,2
+60,Microbiology,Male,20,5,4,3,2,3,4,3,4,5,3,3
