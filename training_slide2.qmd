@@ -37,6 +37,32 @@ execute:
 \end{tabular}
 \end{table}
 
+## Pre-Workshop Participant Survey
+
+Please complete our brief 2-minute survey before we begin the hands-on session:
+
+👉 **[Fill out the Pre-Workshop Survey](https://docs.google.com/forms/d/e/1FAIpQLSfh2MGXfiUpA95M8SWRWgWZqSSbAsrl_Ipkdgtm5VDBq83J6w/viewform?usp=header)**
+
+## Pre-Workshop Survey
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+\textbf{Scan or Click to Register:}
+
+\vspace{0.3cm}
+👉 \href{https://docs.google.com/forms/d/e/1FAIpQLSfh2MGXfiUpA95M8SWRWgWZqSSbAsrl_Ipkdgtm5VDBq83J6w/viewform?usp=header}{Click Here for Pre-Workshop Survey}
+
+\vspace{0.3cm}
+\small Or visit:\\
+\url{https://docs.google.com/forms/d/e/1FAIpQLSfh2MGXfiUpA95M8SWRWgWZqSSbAsrl_Ipkdgtm5VDBq83J6w/viewform}
+\end{column}
+
+\begin{column}{0.4\textwidth}
+% Insert QR Code image saved in your project folder
+\includegraphics[width=3.5cm]{survey_qr_code.png}
+\end{column}
+\end{columns}
+
 # Part I: Foundations Before Analysis
 
 ## 1. Why Researchers Need Data Analytics
