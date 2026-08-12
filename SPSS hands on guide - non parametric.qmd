@@ -1,0 +1,105 @@
+---
+title: "SPSS hands on guide - non parametric"
+format: docx
+editor: visual
+---
+
+Here is the complete **Non-Parametric SPSS Hands-on Practice Guide**, structured identically to your guide:
+
+---
+
+# Non-Parametric SPSS Hands-on Practice Guide
+
+*(You can import this .csv directly into SPSS via **File > Open > Data > Files of type: CSV (*.csv)**)*.
+
+## Dataset Structure & Variable Definitions
+
+| Variable Name | SPSS Measure | Data Type | Description & Purpose in Training |
+| --- | --- | --- | --- |
+| **Sample_ID** | Nominal | String | Unique sample identifier (SMP_001 to SMP_060).
+
+ |
+| **Department** | Nominal | Categorical | Grouping variable: Microbiology, Applied Chemistry, Food Science.
+
+ |
+| **Packaging_Type** | Nominal | Categorical | Binary group: Packaging_A vs. Packaging_B.
+
+ |
+| **Temperature_C** | Scale | Continuous | Independent treatment variable ($25^\circ\text{C}, 45^\circ\text{C}, 65^\circ\text{C}, 85^\circ\text{C}$).
+
+ |
+| **Storage_Days** | Scale | Continuous | Number of days stored (1 to 30 days).
+
+ |
+| **Enzyme_Activity** | Scale | Continuous | Enzyme metric (U/mL) — Used for Kruskal-Wallis Test.
+
+ |
+| **Yield_Pct** | Scale | Continuous | Product extraction yield (%) — Used for Spearman Correlation.
+
+ |
+| **Shelf_Life_Days** | Scale | Continuous | Product shelf life — Used for Mann-Whitney U Test.
+
+ |
+| **Sensory_Score** | Ordinal | Discrete (1–5) | Quality rating — Used for Non-Parametric Descriptive & Rank Tests.
+
+ |
+
+---
+
+## Non-Parametric SPSS Hands-on Practice Guide for Participants
+
+### Exercise 1: Evaluating Distribution & Skewness (Descriptive Non-Parametrics)
+
+* **Goal:** Evaluate central tendency (Median) and dispersion (IQR) when normality assumptions fail or for ordinal variables (`Sensory_Score`).
+* **SPSS Menu:** `Analyze > Descriptive Statistics > Explore...`
+* **Settings:** Move `Sensory_Score` and `Shelf_Life_Days` into **Dependent List** $\rightarrow$ Click **Statistics...** $\rightarrow$ Check **Percentiles** (to get Median and IQR).
+* **Expected Result:** Reports Median and Interquartile Range (IQR) instead of Mean and Standard Deviation, accurately reflecting ranked/non-normal distributions.
+
+---
+
+### Exercise 2: Comparing 2 Independent Groups (Mann-Whitney U Test)
+
+*(Non-Parametric equivalent to Independent Samples $t$-Test)*
+
+* **Research Question:** Does median product shelf life differ significantly between Packaging_A and Packaging_B?
+* **SPSS Menu:** `Analyze > Nonparametric Tests > Legacy Dialogs > 2 Independent Samples...`
+* **Settings:**
+* **Test Variable List:** `Shelf_Life_Days`
+* **Grouping Variable:** `Packaging_Type` (Click **Define Groups...**: Group 1 = `Packaging_A`, Group 2 = `Packaging_B`)
+* **Test Type:** Ensure **Mann-Whitney U** is checked.
+
+
+* **Expected Result:** **Asymp. Sig. (2-tailed) $< 0.001$**. Packaging_B ranks significantly higher in shelf life compared to Packaging_A.
+
+---
+
+### Exercise 3: Comparing 3+ Independent Groups (Kruskal-Wallis H Test & Pairwise Comparisons)
+
+*(Non-Parametric equivalent to One-Way ANOVA)*
+
+* **Research Question:** Does median enzyme activity differ significantly across the three academic departments?
+* **SPSS Menu:** `Analyze > Nonparametric Tests > Legacy Dialogs > K Independent Samples...`
+* **Settings:**
+* **Test Variable List:** `Enzyme_Activity`
+* **Grouping Variable:** `Department` (Click **Define Range...**: Minimum = `1`, Maximum = `3`)
+* **Test Type:** Ensure **Kruskal-Wallis H** is checked.
+
+
+* **Expected Result:** **Asymp. Sig. $< 0.001$** ($H$-statistic/Chi-Square). Indicates significant rank differences across departments, with Applied Chemistry exhibiting higher median ranks than Microbiology and Food Science.
+
+---
+
+### Exercise 4: Assessing Monotonic Relationships (Spearman Rank Correlation)
+
+*(Non-Parametric equivalent to Pearson Correlation / Simple Linear Regression)*
+
+* **Research Question:** Is there a significant monotonic relationship between reaction temperature and process yield percentage?
+* **SPSS Menu:** `Analyze > Correlate > Bivariate...`
+* **Settings:**
+* Move `Temperature_C` and `Yield_Pct` into the **Variables** box.
+* **Correlation Coefficients:** Uncheck **Pearson**, check **Spearman**.
+
+
+* **Expected Result:**
+* **Spearman's rho ($\rho$) $\approx 0.90$ to $0.98$** with **Sig. (2-tailed) $< 0.001$**.
+* Confirms a strong, positive non-parametric monotonic relationship between reaction temperature and product extraction yield.
